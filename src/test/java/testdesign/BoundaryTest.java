@@ -37,12 +37,12 @@ public class BoundaryTest {
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]"))
 				.sendKeys("967" + Keys.ENTER);
 		Thread.sleep(2000);
-		String expMessage = "Success: You have modified your shopping cart!";
-		boolean expected = expMessage.contains("Success");
+		// String expMessage = "Success: You have modified your shopping cart!";
+		// boolean expected = expMessage.contains("Success");
 		String actMessage = driver
 				.findElement(By.xpath("//div[@class='alert alert-success' and contains(text(), 'Success')]")).getText();
 		boolean actual = actMessage.contains("Success");
-		Assert.assertEquals(actual, expected, "My_Error");
+		Assert.assertEquals(true, actual, "My_Error");
 	}
 
 	@Test(priority = 2)
