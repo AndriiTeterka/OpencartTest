@@ -31,21 +31,34 @@ public class BoundaryTest {
 	}
 
 	@Test(priority = 1)
+	public void positiveTestOne() throws Exception {
+		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).click();
+		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).clear();
+		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]"))
+				.sendKeys("1" + Keys.ENTER);
+		Thread.sleep(2000);
+		String actMessage = driver
+				.findElement(By.xpath("//div[@class='alert alert-success' and contains(text(), 'Success')]")).getText();
+		String expMessage = driver
+				.findElement(By.xpath("//div[@class='alert alert-danger' and contains(text(), 'No changes')]"))
+				.getText();
+		Assert.assertEquals(actMessage, expMessage, "My_Error");
+	}
+
+	@Test(priority = 2)
 	public void positiveTest() throws Exception {
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).click();
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).clear();
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]"))
 				.sendKeys("967" + Keys.ENTER);
 		Thread.sleep(2000);
-		// String expMessage = "Success: You have modified your shopping cart!";
-		// boolean expected = expMessage.contains("Success");
 		String actMessage = driver
 				.findElement(By.xpath("//div[@class='alert alert-success' and contains(text(), 'Success')]")).getText();
 		boolean actual = actMessage.contains("Success");
 		Assert.assertEquals(true, actual, "My_Error");
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void negativeTestMax() throws Exception {
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).click();
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).clear();
@@ -61,7 +74,7 @@ public class BoundaryTest {
 		Assert.assertEquals(actual, expected, "My_Error");
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void negativeTestZero() throws Exception {
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).click();
 		driver.findElement(By.xpath("//input[@type='text' and starts-with(@name, 'quantity')]")).clear();

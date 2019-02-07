@@ -25,6 +25,7 @@ public class CartRedir {
 	@Test(priority = 1)
 	public void cartHeaderLink() throws Exception {
 		driver.findElement(By.xpath("//button[@onclick=\"cart.add('40');\"]")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//a[@title='Shopping Cart']")).click();
 		String expected = "Shopping Cart  (10.00kg)";
 		String actual = driver.findElement(By.xpath("//div[@class='col-sm-12']/h1")).getText();
@@ -44,7 +45,7 @@ public class CartRedir {
 	}
 
 	@Test(priority = 3)
-	public void cartBurron() throws Exception {
+	public void cartButton() throws Exception {
 		driver.findElement(By.xpath("//button[@onclick=\"cart.add('40');\"]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//span[@id='cart-total']")).click();
